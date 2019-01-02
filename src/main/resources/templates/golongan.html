@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Hasil Data</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div
+        style="background-color: maroon; border: 1px solid black; padding: 7px; width: auto;">
+    <!-- Mempercantik Tampilan -->
+    <marquee>
+			<span style="color: white;">
+				<tr>
+					<td>Data Kamu Saat ini :</td>
+				</tr>
+               <tr th:each="golongans : ${golongan}">
+                    <td>---</td>
+                    <td> | </td>
+                    <td> Nama: </td>
+                    <td th:text="${golongans.nama}"></td>
+                    <td> | </td>
+                    <td> Gaji: </td>
+                    <td th:text="${golongans.gaji}"></td>
+                    <td> | </td>
+                    <td>---</td>
+                </tr>
+			</span>
+    </marquee>
+    <!-- Mempercantik Tampilan -->
+</div>
+
+<center>
+    <h1>
+        <font size='7' face='Georgia, Arial' color='maroon'>H</font>asil
+        <font size='7' face='Georgia, Arial' color='maroon'>T</font>able
+        <font size='7' face='Georgia, Arial' color='maroon'>G</font>olongan
+
+    </h1>
+</center>
+<hr />
+<br>
+
+
+<div class="container">
+    <center>
+        <p>*Jika ingin tambah baru klik add New dibawah</p>
+        <table border="1" cellpadding="10" cellspacing="1">
+            <tbody>
+            <tr>
+                <th><a class="btn btn-default" href="/kgtabel/newgolongan">Add New</a> </th>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <table border="1" cellpadding="10" cellspacing="1">
+            <tbody>
+
+            <tr>
+                <th>Nama</th>
+                <th>Gaji</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="golongans : ${golongan}">
+                <td th:text="${golongans.nama}"></td>
+                <td th:text="${golongans.gaji}"></td>
+                <td>
+                    <a th:href="${'/kgtabel/editgolongan/' + golongans.id}">Edit |</a>
+                    <a th:href="${'/kgtabel/removegolongan/' + golongans.id}"> Remove</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <p>*ini adalah hasil dari Tabel Karyawan di DB</p>
+    </center>
+</div>
+
+</body>
+</html>
